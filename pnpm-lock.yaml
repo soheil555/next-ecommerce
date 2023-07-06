@@ -19,6 +19,7 @@ specifiers:
   prisma: ^4.16.2
   react: 18.2.0
   react-dom: 18.2.0
+  stripe: ^12.11.0
   tailwindcss: 3.3.2
   ts-node: ^10.9.1
   typescript: 5.1.6
@@ -36,6 +37,7 @@ dependencies:
   postcss: 8.4.24
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  stripe: 12.11.0
   tailwindcss: 3.3.2_ts-node@10.9.1
   typescript: 5.1.6
 
@@ -3372,6 +3374,16 @@ packages:
       }
     engines: { node: '>=6' }
 
+  /qs/6.11.2:
+    resolution:
+      {
+        integrity: sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==,
+      }
+    engines: { node: '>=0.6' }
+    dependencies:
+      side-channel: 1.0.4
+    dev: false
+
   /queue-microtask/1.2.3:
     resolution:
       {
@@ -3710,6 +3722,17 @@ packages:
         integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==,
       }
     engines: { node: '>=8' }
+
+  /stripe/12.11.0:
+    resolution:
+      {
+        integrity: sha512-nyVumI9TXqr+B32397lLHF8VPbTWNvCF/rdY6oLXHLZr+7S8q2PJzo2TUvfowD0eSNz5Hz0O0I2kw9Qb2EyGQA==,
+      }
+    engines: { node: '>=12.*' }
+    dependencies:
+      '@types/node': 20.3.3
+      qs: 6.11.2
+    dev: false
 
   /styled-jsx/5.1.1_react@18.2.0:
     resolution:

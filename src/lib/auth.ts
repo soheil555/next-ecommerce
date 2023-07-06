@@ -3,6 +3,7 @@ import GithubProvider from 'next-auth/providers/github'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { PrismaClient } from '@prisma/client'
 import { Adapter } from 'next-auth/adapters'
+import Stripe from 'stripe'
 
 const prisma = new PrismaClient()
 
@@ -14,4 +15,27 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
   ],
+  events: {
+    createUser: async ({ user }) => {
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+        apiVersion: '2022-11-15',
+      })
+
+      if (user.email && user.name) {
+        const customer = await stripe.customers.create({
+          email: user.email,
+          name: user.name,
+        })
+
+        await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            stripeCustomerId: customer.id,
+          },
+        })
+      }
+    },
+  },
 }
