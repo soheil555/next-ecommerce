@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
-interface CartItem extends IProduct {
+export interface CartItem extends IProduct {
   quantity: number
 }
 

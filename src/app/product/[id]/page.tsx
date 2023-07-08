@@ -1,4 +1,5 @@
 import { IProduct } from '@/components/product'
+import { AddProduct } from '@/components/addProduct'
 import { formatPrice } from '@/lib/formatPrice'
 import Image from 'next/image'
 
@@ -8,6 +9,7 @@ interface IProps {
 }
 
 export default async function Product({
+  params: { id },
   searchParams: { name, description, image, unitAmount },
 }: IProps) {
   return (
@@ -27,13 +29,15 @@ export default async function Product({
 
         <p className='text-gray-700'>{description}</p>
 
-        <p className='text-teal-700'>
-          {unitAmount ? formatPrice(unitAmount) : 'N/A'}
-        </p>
+        <p className='text-teal-700'>{formatPrice(unitAmount)}</p>
 
-        <button className='bg-teal-700 hover:bg-teal-800 text-white w-full p-2 rounded-md'>
-          Add To Cart
-        </button>
+        <AddProduct
+          id={id}
+          name={name}
+          description={description}
+          image={image}
+          unitAmount={unitAmount}
+        />
       </div>
     </div>
   )

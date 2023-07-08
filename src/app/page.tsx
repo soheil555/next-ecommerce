@@ -266,8 +266,8 @@ export default async function Home() {
 
   return (
     <div className='grid grid-cols-fluid gap-10'>
-      {products.map((product, i) => (
-        <Product key={i} {...product} />
+      {products.map(product => (
+        <Product key={product.id} {...product} />
       ))}
     </div>
   )

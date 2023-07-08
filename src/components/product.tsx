@@ -32,9 +32,7 @@ export function Product({ id, name, description, image, unitAmount }: IProps) {
 
         <div className='py-2'>
           <h3 className='text-lg font-medium'>{name}</h3>
-          <p className=' text-teal-700'>
-            {unitAmount !== null ? formatPrice(unitAmount) : 'N/A'}
-          </p>
+          <p className=' text-teal-700'>{formatPrice(unitAmount)}</p>
         </div>
       </Link>
     </div>
