@@ -1,0 +1,32 @@
+import { formatPrice } from '@/lib/formatPrice'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export interface IProduct {
+  id: string
+  name: string
+  description: string
+  image: string
+  unitAmount: number | null
+}
+
+interface IProps extends IProduct {}
+
+export function Product({ id, name, description, image, unitAmount }: IProps) {
+  return (
+    <div>
+      <Link href={`/products/${id}`}>
+        <div className='relative w-full h-96 rounded-lg overflow-hidden'>
+          <Image src={image} alt={name} fill className='object-cover' />
+        </div>
+
+        <div className='py-2'>
+          <h3 className='text-lg font-medium'>{name}</h3>
+          <p className='text-md text-teal-700'>
+            {unitAmount !== null ? formatPrice(unitAmount) : 'N/A'}
+          </p>
+        </div>
+      </Link>
+    </div>
+  )
+}

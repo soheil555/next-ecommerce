@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@auth/prisma-adapter': ^1.0.0
   '@prisma/client': ^4.16.2
+  '@stripe/stripe-js': ^1.54.1
   '@types/node': 20.3.3
   '@types/react': 18.2.14
   '@types/react-dom': 18.2.6
@@ -20,7 +21,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.10.1
-  stripe: ^12.11.0
+  stripe: ^12.12.0
   tailwindcss: 3.3.2
   ts-node: ^10.9.1
   typescript: 5.1.6
@@ -28,6 +29,7 @@ specifiers:
 dependencies:
   '@auth/prisma-adapter': 1.0.0_@prisma+client@4.16.2
   '@prisma/client': 4.16.2_prisma@4.16.2
+  '@stripe/stripe-js': 1.54.1
   '@types/react': 18.2.14
   '@types/react-dom': 18.2.6
   autoprefixer: 10.4.14_postcss@8.4.24
@@ -39,7 +41,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.10.1_react@18.2.0
-  stripe: 12.11.0
+  stripe: 12.12.0
   tailwindcss: 3.3.2_ts-node@10.9.1
   typescript: 5.1.6
 
@@ -458,6 +460,13 @@ packages:
     resolution:
       {
         integrity: sha512-V+MvGwaHH03hYhY+k6Ef/xKd6RYlc4q8WBx+2ANmipHJcKuktNcI/NgEsJgdSUF6Lw32njT6OnrRsKYCdgHjYw==,
+      }
+    dev: false
+
+  /@stripe/stripe-js/1.54.1:
+    resolution:
+      {
+        integrity: sha512-smEXPu1GKMcAj9g2luT16+oXfg2jAwyc68t2Dm5wdtYl3p8PqQaZEiI8tQmboaQAjgF8pIGma6byz1T1vgmpbA==,
       }
     dev: false
 
@@ -3736,10 +3745,10 @@ packages:
       }
     engines: { node: '>=8' }
 
-  /stripe/12.11.0:
+  /stripe/12.12.0:
     resolution:
       {
-        integrity: sha512-nyVumI9TXqr+B32397lLHF8VPbTWNvCF/rdY6oLXHLZr+7S8q2PJzo2TUvfowD0eSNz5Hz0O0I2kw9Qb2EyGQA==,
+        integrity: sha512-aM9xfyDryiaf/qSWMtJaTMrlc/he3qyx3aVHMqOZqUiMdgTV6lt7tLpFrU0pG+QURm1LAP9GYZ+EcA17446YoQ==,
       }
     engines: { node: '>=12.*' }
     dependencies:
