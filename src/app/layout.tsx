@@ -1,5 +1,5 @@
-import { Nav } from '@/components/nav'
 import './globals.css'
+import { Nav } from '@/components/nav'
 import { Inter } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
@@ -20,7 +20,7 @@ export default async function RootLayout({
 
   return (
     <html lang='en'>
-      <body className={`${inter.className} mx-3 lg:mx-48`}>
+      <body className={`${inter.className} mx-3 md:mx-24 lg:mx-48`}>
         <Nav session={session} />
         {children}
       </body>
