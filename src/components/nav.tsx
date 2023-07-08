@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
 import { Cart } from './cart'
+import { AnimatePresence, motion } from 'framer-motion'
 
 interface IProps {
   session: Session | null
@@ -25,9 +26,19 @@ export function Nav({ session }: IProps) {
         <ul className='flex items-center gap-6'>
           <li onClick={toggleCart} className='text-4xl cursor-pointer relative'>
             <AiOutlineShopping />
-            <span className='absolute -top-1 -right-1 text-xs text-white bg-teal-700 rounded-full h-5 w-5 flex justify-center items-center'>
-              {cartLen}
-            </span>
+
+            <AnimatePresence>
+              {cartLen && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className='absolute -top-1 -right-1 text-xs text-white bg-teal-700 rounded-full h-5 w-5 flex justify-center items-center'
+                >
+                  {cartLen}
+                </motion.span>
+              )}
+            </AnimatePresence>
           </li>
 
           <li>
@@ -51,7 +62,7 @@ export function Nav({ session }: IProps) {
         </ul>
       </nav>
 
-      {isCartOpen && <Cart />}
+      <AnimatePresence>{isCartOpen && <Cart />}</AnimatePresence>
     </>
   )
 }

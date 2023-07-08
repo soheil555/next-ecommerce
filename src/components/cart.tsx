@@ -3,6 +3,7 @@ import { CartItem } from './cartItem'
 import { useEffect } from 'react'
 import Image from 'next/image'
 import { formatPrice } from '@/lib/formatPrice'
+import { motion } from 'framer-motion'
 
 export function Cart() {
   const cartItems = useStore(useCartStore, state => state.cart)
@@ -24,13 +25,16 @@ export function Cart() {
   }, [cartItems])
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={toggleCart}
       className='fixed top-0 left-0 w-full h-screen bg-black/25 z-50'
     >
       <div
         onClick={e => e.stopPropagation()}
-        className='absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-screen bg-white px-6 pt-12'
+        className='absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-screen bg-white px-6 py-12 overflow-y-scroll'
       >
         <button onClick={toggleCart} className='font-medium'>
           Back to store 🏃‍♀️
@@ -42,22 +46,28 @@ export function Cart() {
           ))}
         </div>
 
-        {cartItems?.length ? (
-          <>
+        {!!cartItems?.length && (
+          <motion.div layout>
             <p className='my-4 text-gray-700'>
               Total: {formatPrice(totalPrice)}
             </p>
             <button className='bg-teal-700 hover:bg-teal-800 w-full p-4 text-white rounded-md'>
               Checkout
             </button>
-          </>
-        ) : (
-          <div className='flex flex-col items-center justify-center gap-4 pt-56'>
+          </motion.div>
+        )}
+
+        {!cartItems?.length && (
+          <motion.div
+            initial={{ opacity: 0, rotateZ: -10 }}
+            animate={{ opacity: 1, rotateZ: 0 }}
+            className='flex flex-col items-center justify-center gap-4 pt-56'
+          >
             <h3 className='text-xl'>Cart is empty 😢</h3>
             <Image src='/basket.png' alt='basket' width={300} height={300} />
-          </div>
+          </motion.div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }

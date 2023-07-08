@@ -11,6 +11,7 @@ specifiers:
   eslint: 8.44.0
   eslint-config-next: 13.4.8
   eslint-config-prettier: ^8.8.0
+  framer-motion: ^10.12.18
   husky: ^8.0.3
   immer: ^10.0.2
   next: 13.4.8
@@ -37,6 +38,7 @@ dependencies:
   autoprefixer: 10.4.14_postcss@8.4.24
   eslint: 8.44.0
   eslint-config-next: 13.4.8_iqf7tbmerllfqanu4l3d6aqdn4
+  framer-motion: 10.12.18_biqbaboplfbrettd7655fr4n2y
   immer: 10.0.2
   next: 13.4.8_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.22.1_huavqdni4pobvfczobpbvo6vhq
@@ -125,6 +127,25 @@ packages:
     engines: { node: '>=12' }
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+
+  /@emotion/is-prop-valid/0.8.8:
+    resolution:
+      {
+        integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==,
+      }
+    requiresBuild: true
+    dependencies:
+      '@emotion/memoize': 0.7.4
+    dev: false
+    optional: true
+
+  /@emotion/memoize/0.7.4:
+    resolution:
+      {
+        integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==,
+      }
+    dev: false
+    optional: true
 
   /@eslint-community/eslint-utils/4.4.0_eslint@8.44.0:
     resolution:
@@ -1863,6 +1884,27 @@ packages:
       {
         integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==,
       }
+    dev: false
+
+  /framer-motion/10.12.18_biqbaboplfbrettd7655fr4n2y:
+    resolution:
+      {
+        integrity: sha512-cfhiUpPbj+0eEWKjuD+5cz5cMqH71xOtMxGiS/cSGfHn2OlHIEAqFnFyzEMENw5PxWR9bMVhatzzpD6lexmHZQ==,
+      }
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tslib: 2.6.0
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
     dev: false
 
   /fs.realpath/1.0.0:

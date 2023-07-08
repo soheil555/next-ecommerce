@@ -2,6 +2,7 @@ import { formatPrice } from '@/lib/formatPrice'
 import { CartItem as ICartItem, useCartStore } from '@/store'
 import Image from 'next/image'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
+import { motion } from 'framer-motion'
 
 interface IProps extends ICartItem {}
 
@@ -17,7 +18,7 @@ export function CartItem({
   const removeProductFromCart = useCartStore(state => state.removeProduct)
 
   return (
-    <div className='bg-gray-200 rounded-lg p-4 flex gap-4'>
+    <motion.div layout className='bg-gray-200 rounded-lg p-4 flex gap-4'>
       <div className='relative w-32 h-32'>
         <Image
           src={image}
@@ -53,6 +54,6 @@ export function CartItem({
         </div>
         <p className='text-teal-700 text-sm'>{formatPrice(unitAmount)}</p>
       </div>
-    </div>
+    </motion.div>
   )
 }
