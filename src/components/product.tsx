@@ -1,3 +1,5 @@
+'use client'
+
 import { formatPrice } from '@/lib/formatPrice'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +9,7 @@ export interface IProduct {
   name: string
   description: string
   image: string
-  unitAmount: string | number | null
+  unitAmount: string
 }
 
 interface IProps extends IProduct {}

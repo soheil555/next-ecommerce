@@ -7,12 +7,21 @@ export interface CartItem extends IProduct {
   quantity: number
 }
 
+export enum UserState {
+  Cart,
+  Checkout,
+}
+
 interface CartState {
   cart: CartItem[]
   isOpen: boolean
+  userState: UserState
+  paymentIntentId: string
   toggleCart: () => void
   addProduct: (product: IProduct) => void
   removeProduct: (productId: string) => void
+  setUserState: (userState: UserState) => void
+  setPaymentIntentId: (paymentIntentId: string) => void
 }
 
 export const useCartStore = create<CartState>()(
@@ -20,6 +29,8 @@ export const useCartStore = create<CartState>()(
     immer(set => ({
       cart: [],
       isOpen: false,
+      userState: UserState.Cart,
+      paymentIntentId: '',
       toggleCart: () => set(state => ({ isOpen: !state.isOpen })),
       addProduct: product =>
         set(state => {
@@ -37,6 +48,14 @@ export const useCartStore = create<CartState>()(
               state.cart[productIndex].quantity -= 1
             else state.cart.splice(productIndex, 1)
           }
+        }),
+      setUserState: userState =>
+        set(state => {
+          state.userState = userState
+        }),
+      setPaymentIntentId: paymentIntentId =>
+        set(state => {
+          state.paymentIntentId = paymentIntentId
         }),
     })),
 

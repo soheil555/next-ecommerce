@@ -1,9 +1,7 @@
 import { Product, IProduct } from '@/components/product'
 
 async function getProducts() {
-  // const products = await stripe.products.list({
-  //   apiKey: process.env.STRIPE_SECRET_KEY,
-  // })
+  // const products = await stripe.products.list()
 
   const products = {
     data: [
@@ -130,9 +128,7 @@ async function getProducts() {
     ],
   }
 
-  // const prices = await stripe.prices.list({
-  //   apiKey: process.env.STRIPE_SECRET_KEY,
-  // })
+  // const prices = await stripe.prices.list()
 
   const prices = {
     data: [
@@ -247,7 +243,7 @@ async function getProducts() {
   const productsWithPrices: IProduct[] = products.data.map(product => {
     const unitAmount =
       prices.data.find(price => price.id === product.default_price)
-        ?.unit_amount || null
+        ?.unit_amount_decimal || '0'
 
     return {
       id: product.id,

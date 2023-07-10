@@ -16,6 +16,7 @@ model User {
   stripeCustomerId String?
   accounts         Account[]
   sessions         Session[]
+  orders           Order[]
 }
 
 model Account {
@@ -52,4 +53,32 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  amount          Float
+  status          OrderStatus
+  createdAt       DateTime    @default(now())
+  paymentIntentId String?     @unique
+  user            User        @relation(fields: [userId], references: [id])
+  userId          String
+
+  products Product[]
+}
+
+model Product {
+  id          String  @id @default(cuid())
+  name        String
+  unitAmount  String
+  quantity    Float   @default(0)
+  description String?
+  image       String?
+  order       Order?  @relation(fields: [orderId], references: [id])
+  orderId     String?
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
 }

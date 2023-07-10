@@ -1,28 +1,18 @@
-import { useCartStore, useStore } from '@/store'
+'use client'
+
+import { UserState, useCartStore, useStore } from '@/store'
 import { CartItem } from './cartItem'
-import { useEffect } from 'react'
 import Image from 'next/image'
 import { formatPrice } from '@/lib/formatPrice'
 import { motion } from 'framer-motion'
+import { totalPrice } from '@/lib/totalPrice'
+import { Checkout } from './checkout'
 
 export function Cart() {
   const cartItems = useStore(useCartStore, state => state.cart)
+  const userState = useStore(useCartStore, state => state.userState)
+  const setUserState = useCartStore(state => state.setUserState)
   const toggleCart = useCartStore(state => state.toggleCart)
-
-  const totalPrice =
-    cartItems?.reduce<number>((acc, item) => {
-      let unitAmount = item.unitAmount
-
-      if (unitAmount === null || unitAmount === '') unitAmount = 0
-      else if (typeof unitAmount === 'string')
-        unitAmount = parseFloat(unitAmount)
-
-      return acc + unitAmount * item.quantity
-    }, 0) || 0
-
-  useEffect(() => {
-    console.log(cartItems)
-  }, [cartItems])
 
   return (
     <motion.div
@@ -36,28 +26,35 @@ export function Cart() {
         onClick={e => e.stopPropagation()}
         className='absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-screen bg-white px-6 py-12 overflow-y-scroll'
       >
-        <button onClick={toggleCart} className='font-medium'>
-          Back to store 🏃‍♀️
-        </button>
+        {userState === UserState.Cart && (
+          <>
+            <button onClick={toggleCart} className='font-medium'>
+              Back to store 🏃‍♀️
+            </button>
 
-        <div className='flex flex-col gap-8 mt-12'>
-          {cartItems?.map(item => (
-            <CartItem key={item.id} {...item} />
-          ))}
-        </div>
+            <div className='flex flex-col gap-8 mt-12'>
+              {cartItems?.map(item => (
+                <CartItem key={item.id} {...item} />
+              ))}
+            </div>
+          </>
+        )}
 
-        {!!cartItems?.length && (
+        {userState === UserState.Cart && !!cartItems?.length && (
           <motion.div layout>
             <p className='my-4 text-gray-700'>
-              Total: {formatPrice(totalPrice)}
+              Total: {formatPrice(totalPrice(cartItems))}
             </p>
-            <button className='bg-teal-700 hover:bg-teal-800 w-full p-4 text-white rounded-md'>
+            <button
+              onClick={() => setUserState(UserState.Checkout)}
+              className='bg-teal-700 hover:bg-teal-800 w-full p-4 text-white rounded-md'
+            >
               Checkout
             </button>
           </motion.div>
         )}
 
-        {!cartItems?.length && (
+        {userState === UserState.Cart && !cartItems?.length && (
           <motion.div
             initial={{ opacity: 0, rotateZ: -10 }}
             animate={{ opacity: 1, rotateZ: 0 }}
@@ -67,6 +64,8 @@ export function Cart() {
             <Image src='/basket.png' alt='basket' width={300} height={300} />
           </motion.div>
         )}
+
+        {userState === UserState.Checkout && <Checkout />}
       </div>
     </motion.div>
   )

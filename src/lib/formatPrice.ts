@@ -1,6 +1,7 @@
-export function formatPrice(unitAmount: string | number | null) {
-  if (unitAmount === null || unitAmount === '') return 'N/A'
-  if (typeof unitAmount === 'string') unitAmount = parseFloat(unitAmount)
+export function formatPrice(unitAmount: string | number) {
+  unitAmount =
+    typeof unitAmount === 'number' ? unitAmount : parseFloat(unitAmount)
+
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',

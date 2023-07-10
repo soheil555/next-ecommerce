@@ -32,4 +32,10 @@ export const authOptions: AuthOptions = {
       }
     },
   },
+  callbacks: {
+    async session({ session, user }) {
+      session.user = user
+      return session
+    },
+  },
 }

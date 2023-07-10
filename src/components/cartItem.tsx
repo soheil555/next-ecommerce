@@ -1,3 +1,5 @@
+'use client'
+
 import { formatPrice } from '@/lib/formatPrice'
 import { CartItem as ICartItem, useCartStore } from '@/store'
 import Image from 'next/image'
