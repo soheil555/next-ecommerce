@@ -3,6 +3,11 @@
 import { useCartStore, useStore } from '@/store'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
+import { CheckoutForm } from './checkoutForm'
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK as string)
 
 export function Checkout() {
   const router = useRouter()
@@ -29,5 +34,23 @@ export function Checkout() {
     }
   }, [cartItems, paymentIntentId, router, setPaymentIntentId])
 
-  return <div>{clientSecret && <></>}</div>
+  const options: StripeElementsOptions = {
+    clientSecret,
+    appearance: {
+      theme: 'stripe',
+      labels: 'floating',
+    },
+  }
+
+  return (
+    <div>
+      {clientSecret && (
+        <div>
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        </div>
+      )}
+    </div>
+  )
 }

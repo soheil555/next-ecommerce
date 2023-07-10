@@ -10,6 +10,7 @@ export interface CartItem extends IProduct {
 export enum UserState {
   Cart,
   Checkout,
+  Success,
 }
 
 interface CartState {
