@@ -14,7 +14,7 @@ export function OrderConfirmed() {
   useEffect(() => {
     emptyCart()
     setPaymentIntentId('')
-  }, [emptyCart])
+  }, [emptyCart, setPaymentIntentId])
 
   return (
     <motion.div
