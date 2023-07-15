@@ -23,6 +23,7 @@ interface CartState {
   removeProduct: (productId: string) => void
   setUserState: (userState: UserState) => void
   setPaymentIntentId: (paymentIntentId: string) => void
+  emptyCart: () => void
 }
 
 export const useCartStore = create<CartState>()(
@@ -58,8 +59,11 @@ export const useCartStore = create<CartState>()(
         set(state => {
           state.paymentIntentId = paymentIntentId
         }),
+      emptyCart: () =>
+        set(state => {
+          state.cart = []
+        }),
     })),
-
     {
       name: 'cart-store',
     }

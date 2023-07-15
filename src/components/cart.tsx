@@ -7,6 +7,7 @@ import { formatPrice } from '@/lib/formatPrice'
 import { motion } from 'framer-motion'
 import { totalPrice } from '@/lib/totalPrice'
 import { Checkout } from './checkout'
+import { OrderConfirmed } from './orderConfirmed'
 
 export function Cart() {
   const cartItems = useStore(useCartStore, state => state.cart)
@@ -66,6 +67,8 @@ export function Cart() {
         )}
 
         {userState === UserState.Checkout && <Checkout />}
+
+        {userState === UserState.Success && <OrderConfirmed />}
       </div>
     </motion.div>
   )
