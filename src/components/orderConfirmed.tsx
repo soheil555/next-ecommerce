@@ -29,7 +29,9 @@ export function OrderConfirmed() {
         <button
           onClick={() => {
             toggleCart()
-            setUserState(UserState.Cart)
+            setTimeout(() => {
+              setUserState(UserState.Cart)
+            }, 1000)
           }}
           className='bg-teal-700 hover:bg-teal-800 text-white py-2 px-3 rounded-md'
         >

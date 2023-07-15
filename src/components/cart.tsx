@@ -66,7 +66,18 @@ export function Cart() {
           </motion.div>
         )}
 
-        {userState === UserState.Checkout && <Checkout />}
+        {userState === UserState.Checkout && (
+          <>
+            <button
+              onClick={() => setUserState(UserState.Cart)}
+              className='font-medium my-2'
+            >
+              Check your cart 🛒
+            </button>
+
+            <Checkout />
+          </>
+        )}
 
         {userState === UserState.Success && <OrderConfirmed />}
       </div>

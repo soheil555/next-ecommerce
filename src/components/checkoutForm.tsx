@@ -30,7 +30,7 @@ export function CheckoutForm() {
     <form id='payment-form'>
       <PaymentElement id='payment-element' options={{ layout: 'tabs' }} />
       <button
-        className='bg-teal-700 p-2 rounded-lg'
+        className='bg-teal-700 p-2 rounded-lg text-white w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed'
         onClick={handleSubmit}
         id='submit'
         disabled={isLoading || !stripe || !elements}
