@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { AiOutlineShopping } from 'react-icons/ai'
 import { Cart } from './cart'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ProfileMenu } from './profileMenu'
 
 interface IProps {
   session: Session | null
@@ -43,15 +44,7 @@ export function Nav({ session }: IProps) {
 
           <li>
             {session ? (
-              <Link href='/dashboard'>
-                <Image
-                  className='rounded-full border-2 border-black/70 object-cover'
-                  width={50}
-                  height={50}
-                  src={session.user?.image || '/default-profile.png'}
-                  alt={session.user?.name || 'github profile picture'}
-                />
-              </Link>
+              <ProfileMenu session={session} />
             ) : (
               <button
                 onClick={() => signIn()}
