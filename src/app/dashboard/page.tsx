@@ -37,8 +37,10 @@ export default async function Dashboard() {
       <div>
         {orders.map(order => (
           <div key={order.id} className='rounded-lg p-8 my-12'>
-            <h3 className='text-xs font-medium'>Order reference: {order.id}</h3>
-            <p className='text-xs'>
+            <h3 className='text-xs font-medium py-2'>
+              Order reference: {order.id}
+            </h3>
+            <p className='text-xs py-2'>
               Status:{' '}
               <span
                 className={`${
