@@ -43,13 +43,15 @@ export function Nav({ session }: IProps) {
 
           <li>
             {session ? (
-              <Image
-                className='rounded-full border-2 border-black/70 object-cover'
-                width={50}
-                height={50}
-                src={session.user?.image || '/default-profile.png'}
-                alt={session.user?.name || 'github profile picture'}
-              />
+              <Link href='/dashboard'>
+                <Image
+                  className='rounded-full border-2 border-black/70 object-cover'
+                  width={50}
+                  height={50}
+                  src={session.user?.image || '/default-profile.png'}
+                  alt={session.user?.name || 'github profile picture'}
+                />
+              </Link>
             ) : (
               <button
                 onClick={() => signIn()}
