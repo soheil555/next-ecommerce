@@ -23,7 +23,7 @@ export function ProfileMenu({ session }: IProps) {
         />
       </Menu.Button>
 
-      <Menu.Items className=' bg-slate-100 p-4 rounded-lg absolute right-0 w-36 flex flex-col items-start gap-3 '>
+      <Menu.Items className=' bg-slate-100 p-4 rounded-lg absolute right-0 w-36 flex flex-col items-start gap-3 z-50'>
         <Menu.Item>
           {({ active }) => (
             <Link
