@@ -36,7 +36,7 @@ export default async function Dashboard() {
       {orders.length === 0 ? <h3>You have no orders</h3> : <h3>Your orders</h3>}
       <div>
         {orders.map(order => (
-          <div key={order.id} className='rounded-lg p-8 my-12 bg-gray-200'>
+          <div key={order.id} className='rounded-lg p-8 my-12 bg-gray-100'>
             <h3 className='text-xs font-medium py-2'>
               Order reference: {order.id}
             </h3>
