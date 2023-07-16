@@ -1,3 +1,4 @@
+import { authOptions } from '@/lib/auth'
 import { formatPrice } from '@/lib/formatPrice'
 import { prisma } from '@/lib/prisma'
 import { OrderStatus, User } from '@prisma/client'
@@ -8,7 +9,7 @@ import { redirect } from 'next/navigation'
 export const revalidate = 0
 
 const fetchOrders = async () => {
-  const session = await getServerSession()
+  const session = await getServerSession(authOptions)
   if (!session || !session.user) return null
 
   const user = session.user as User
